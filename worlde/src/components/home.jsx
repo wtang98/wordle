@@ -1,9 +1,11 @@
 import React,{useState, useEffect} from 'react'
 import GameArea from './gameArea/gameArea';
 import './home.scss'
+import Keyboard from './keyboard/keyboard';
 
 
 const schedule = require('node-schedule');
+
 const Home = () => {
     const [allWords, setAllWords] = useState('')
     const [fiveLetterWords, setfiveLetterWords] = useState('')
@@ -31,6 +33,7 @@ const Home = () => {
         <div className='home'>
             <h1>Fake Wordle</h1>
             <GameArea randomFiveLetter={randomFiveLetter}/>
+            <Keyboard/>
         </div>
     )
 }

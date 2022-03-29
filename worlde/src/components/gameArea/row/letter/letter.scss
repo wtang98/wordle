@@ -1,0 +1,21 @@
+.letter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    width: 45px;
+    height: 45px;
+    border: 1px solid black;
+    &>input{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 35px;
+        text-transform: uppercase;
+        border: none;
+        min-width: 1px;
+    }
+    &>input:focus{
+        outline: none;
+    }
+}
