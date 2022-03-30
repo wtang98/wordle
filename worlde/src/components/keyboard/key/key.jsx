@@ -3,24 +3,25 @@ import './key.scss'
 import {ContextAPI} from '../../../App'
 
 const Key = ({value}) => {
-    const {randomFiveLetter, fiveLetterWords, board, setBoard, currentAttempt, setCurrentAttempt, grey, setGrey, yellow, setYellow, green, setGreen} = useContext(ContextAPI)
-    const [joinedArr, setJoinedArr] = useState('')
-// console.log(board[currentAttempt.attempt])
-    let guessArr = [];
+    const {randomFiveLetter, fiveLetterWords, board, setBoard, colorBoard, setColorBoard, currentAttempt, setCurrentAttempt, grey, setGrey, yellow, setYellow, green, setGreen} = useContext(ContextAPI)
+    
     let guess;
+    let randomWordArr;
+    if(randomFiveLetter !== undefined){
+        let upper = randomFiveLetter.toUpperCase()
+        randomWordArr = upper.split('')
+    }
     const clickLetter = () => {
         if(value === 'Enter'){
             if(currentAttempt.letterPos !== 5)return 
             joinArr()
             if(!fiveLetterWords.includes(guess.join('').toLowerCase())){
-                setJoinedArr('')
-                for(let i =0; i<5;i++){
-                    if(guess[i] == randomFiveLetter[i]){
-
-                    }
-                }
                 return
             }else{
+                console.log(guess, 'the guess')
+                console.log(randomFiveLetter.toUpperCase().split(''),'the answer split')
+                colorTheBoard()
+                guess= ''
                 setCurrentAttempt({attempt: currentAttempt.attempt+1, letterPos:0})
             }
         }else if (value === 'Delete'){
@@ -28,6 +29,9 @@ const Key = ({value}) => {
             const newBoard = [...board]
             newBoard[currentAttempt.attempt][currentAttempt.letterPos-1] = ''
             setBoard(newBoard)
+            const newColorBoard = [...colorBoard]
+            newColorBoard[currentAttempt.attempt][currentAttempt.letterPos-1] = ''
+            setColorBoard(newColorBoard) 
             setCurrentAttempt({...currentAttempt, letterPos: currentAttempt.letterPos-1})
             joinArr()
         }else{
@@ -40,17 +44,38 @@ const Key = ({value}) => {
         }
     }   
     const joinArr = () => {
-        console.log(board[currentAttempt.attempt].join('').toLowerCase(),'guess')
         guess = board[currentAttempt.attempt]
-        // setJoinedArr(any)
-        console.log(guess, 'cur')
-        console.log(randomFiveLetter)
-        console.log(randomFiveLetter[1])
-        console.log(!fiveLetterWords.includes(joinedArr),'bool')
+    }
+    const colorTheBoard = () => {
+        const newColorBoard = [...colorBoard]
+        console.log('clicked')
+        for(let i=0; i<5;i++){
+            if(randomWordArr[i] === guess[i]){
+                console.log('same')
+                newColorBoard[currentAttempt.attempt][i] = 'green'
+                
+            }
+            for(let j=0; j<5;j++){
+                if(randomWordArr[i] !== guess[j]){
+                    console.log('dif')
+                    newColorBoard[currentAttempt.attempt][i] = 'grey'
+                }
+            }
+            if(randomWordArr[i] !== guess[i]){
+                for(let x=0; x<5;x++){
+                    if(randomWordArr[i] !== guess[x]){
+                        console.log('same but diff')
+                        newColorBoard[currentAttempt.attempt][i] = 'yellow'
+                    }
+                }
+            }
+        }
+        console.log(newColorBoard)
+        setColorBoard(newColorBoard) 
     }
 
     return (
-        <div className='key' onClick={clickLetter}>
+        <div className={`key ${grey && 'grey'} ${yellow && 'yellow'} ${green && 'green'}`} onClick={clickLetter}>
             {value}
         </div>
     )
