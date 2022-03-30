@@ -2,9 +2,8 @@ import React,{useState} from 'react'
 import Row from './row/row';
 
 
-const GameArea = ({randomFiveLetter}) => {
-
-    console.log(randomFiveLetter)
+const GameArea = () => {
+    
     return (
         <div className='gameArea'>
             <Row attemptI={0}/>

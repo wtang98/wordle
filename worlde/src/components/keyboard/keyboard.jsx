@@ -11,18 +11,20 @@ const Keyboard = () => {
         <div className='keyboard'>
             <div className="keyboard__first">
                 {first.map((fir)=> {
-                    return <Key keyValue={fir}/>
+                    return <Key value={fir}/>
                 })}
             </div>
             <div className="keyboard__second">
                 {second.map((sec)=> {
-                    return <Key keyValue={sec}/>
+                    return <Key value={sec}/>
                 })}
             </div>
             <div className="keyboard__third">
+                <Key value={'Enter'}/>
                 {third.map((thi)=> {
-                    return <Key keyValue={thi}/>
+                    return <Key value={thi}/>
                 })}
+                <Key value={'Delete'}/>
             </div>
         </div>
     )

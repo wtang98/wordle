@@ -10,8 +10,8 @@ const Letter = ({letterI, attemptI}) => {
 
     return (
         <div className='letter'>   
-            {/* {letter} */}
-            <input type="text" defaultValue={letter} maxLength={1} />
+            {letter}
+            {/* <input type="text" defaultValue={letter} value = {letter} maxLength={1} /> */}
         </div>
     )
 }
