@@ -1,5 +1,10 @@
 .key{
-    
+    &>img{
+        width: 7vw;
+        max-width: 40px;
+        height: 3vh;
+        max-height: 30px;
+    }
 }
 .grey{
     background-color: grey;

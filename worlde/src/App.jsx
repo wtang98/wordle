@@ -10,6 +10,7 @@ function App() {
 
     const [board, setBoard] = useState(startingBoard);
     const [colorBoard, setColorBoard] = useState(startingColorBoard)
+    
     const [currentAttempt, setCurrentAttempt] = useState({attempt:0, letterPos:0})
     const [allWords, setAllWords] = useState('')
     const [fiveLetterWords, setfiveLetterWords] = useState('')
@@ -35,12 +36,12 @@ function App() {
         let random = parseInt(Math.random()*fiveLetterWords.length)
         setRandomFiveLetter(fiveLetterWords[random])
     },[fiveLetterWords])
-
+    
     let ansArr = [];
     if(randomFiveLetter!= undefined){
         ansArr = randomFiveLetter.split('')
+        console.log(randomFiveLetter)
     }
-    console.log(randomFiveLetter)
 
     return (
         <div className="App">
